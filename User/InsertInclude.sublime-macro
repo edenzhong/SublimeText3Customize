@@ -1,0 +1,4 @@
+[
+    {"command": "insert", "args": {"characters": "#include \"\""}},
+    {"command": "move", "args": {"by": "characters", "forward": false}}
+]

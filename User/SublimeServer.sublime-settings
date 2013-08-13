@@ -1,0 +1,12 @@
+{
+	"attempts": 5,
+	"interval": 500,
+	"mimetypes":
+	{
+		"": "application/octet-stream",
+		".c": "text/plain",
+		".h": "text/plain",
+		".py": "text/plain"
+	},
+	"port": 8080
+}
