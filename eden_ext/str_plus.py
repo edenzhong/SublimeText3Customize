@@ -1,4 +1,28 @@
 
+def reverse_chars(str):
+    reverse = list(str)
+    reverse.reverse()
+    return ''.join(reverse)
+
+def reverse_words(str):
+    reverse = str.split()
+    reverse.reverse()
+    return ' '.join(reverse)
+
+def reverse_words2(str):
+    import re
+    reverse = re.split(r'\s+', str)
+    reverse.reverse()
+    return ' '.join(reverse)
+
+def reverse(alist):
+    """
+    a helper function to reverse a list
+    """
+    tmp = alist[:]
+    tmp.reverse()
+    return tmp
+
 def str_to_num(s):
 	try:
 		if ( len(s) > 2 ):
