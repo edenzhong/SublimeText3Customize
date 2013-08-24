@@ -1,17 +1,25 @@
 import sublime, sublime_plugin, re, string
 
+class SetEditTextCommand(sublime_plugin.TextCommand):
+	def run(self,edit,start,end,str_to_insert):
+		r = sublime.Region(start,end)
+		self.view.replace(edit,r,str_to_insert)
+
 class InsPrefixCommand(sublime_plugin.TextCommand):
 	word_pattern = re.compile("[\w]+")
+	new_line = '''
+'''
 
 	def run(self, edit):
 		# make an input plane to get user input
 		input_view = self.view.window().show_input_panel("Input Prefix","",self.doit,None,None)
-		pass
-
+		print("run end")
+		
 		# if user input is \C
 		# self.AppendByClipboard(edit)
 
 	def doit(self,user_input):
+		print("do it")
 		options = self.input_parser(user_input)
 		if ( "show_help" in options.keys() ):
 			self.help_info()
@@ -22,13 +30,22 @@ class InsPrefixCommand(sublime_plugin.TextCommand):
 				s = self.view.substr(region)
 				sl = s.splitlines()
 				
+				cont = ""
 				#for l in sl:
 				for idx in range(len(sl)):
 					l = sl[idx]
-					print(l)
 					ins_pos = self.get_insert_pos(l,options["position_type"],options["position_value"])
 					s = l[0:ins_pos] + str(self.get_insert_context(idx,options["context_type"],options["context_value"],options["context"])) + l[ins_pos:]
-					print(s)
+					cont = cont + s
+					if ( idx < len(sl) - 1):
+						cont = cont + self.new_line
+
+				self.view.run_command("set_edit_text",{"start":region.begin(),"end":region.end(),"str_to_insert":cont})
+
+
+			
+		print("do it end")
+				
 
 
 	def get_insert_pos(self,original_str,pos_type,pos_val):
@@ -56,15 +73,25 @@ class InsPrefixCommand(sublime_plugin.TextCommand):
 	context_2b_insert = []
 	def prepare_insert_context(self,context_type,context_value):
 		if ( context_type == "C"):
+			# get data from clipboard
+			clip_cont = sublime.get_clipboard()
+			self.context_2b_insert = clip_cont.splitlines()
+			print("prepare context:",clip_cont)
+			print("cnt=",len(self.context_2b_insert))
+			# split by line and store to context_2b_insert
 			pass
 
 	def get_insert_context(self,idx,context_type,context_value,context):
 		if ( context_type == "C"):
+			print("context_type C")
 			if ( 0 == idx ):
+				print("to prepare context")
 				self.prepare_insert_context(context_type,context_value)
-			if ( idx < len(context_2b_insert)):
-				return context_2b_insert[idx]
+			if ( idx < len(self.context_2b_insert)):
+				print("the context:",self.context_2b_insert[idx])
+				return self.context_2b_insert[idx]
 			else:
+				print("idx >= len")
 				return ""
 		elif (context_type == "d"):
 			val = int(context)
