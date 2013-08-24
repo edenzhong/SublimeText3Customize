@@ -1,4 +1,5 @@
 import sublime, sublime_plugin, re, string
+from .str_plus import str_to_num
 
 class SetEditTextCommand(sublime_plugin.TextCommand):
 	def run(self,edit,start,end,str_to_insert):
@@ -13,13 +14,8 @@ class InsPrefixCommand(sublime_plugin.TextCommand):
 	def run(self, edit):
 		# make an input plane to get user input
 		input_view = self.view.window().show_input_panel("Input Prefix","",self.doit,None,None)
-		print("run end")
 		
-		# if user input is \C
-		# self.AppendByClipboard(edit)
-
 	def doit(self,user_input):
-		print("do it")
 		options = self.input_parser(user_input)
 		if ( "show_help" in options.keys() ):
 			self.help_info()
@@ -42,14 +38,8 @@ class InsPrefixCommand(sublime_plugin.TextCommand):
 
 				self.view.run_command("set_edit_text",{"start":region.begin(),"end":region.end(),"str_to_insert":cont})
 
-
-			
-		print("do it end")
-				
-
-
 	def get_insert_pos(self,original_str,pos_type,pos_val):
-		val = int(pos_val)
+		val = str_to_num(pos_val)
 
 		if ( pos_type == "w") or ( pos_type == "W"):
 			it = self.word_pattern.finditer(original_str)
@@ -72,37 +62,31 @@ class InsPrefixCommand(sublime_plugin.TextCommand):
 
 	context_2b_insert = []
 	def prepare_insert_context(self,context_type,context_value):
+		'''prepare the insert context for \\C option, context comes from clipboard'''
 		if ( context_type == "C"):
-			# get data from clipboard
 			clip_cont = sublime.get_clipboard()
 			self.context_2b_insert = clip_cont.splitlines()
-			print("prepare context:",clip_cont)
-			print("cnt=",len(self.context_2b_insert))
-			# split by line and store to context_2b_insert
-			pass
-
+			
 	def get_insert_context(self,idx,context_type,context_value,context):
 		if ( context_type == "C"):
-			print("context_type C")
 			if ( 0 == idx ):
-				print("to prepare context")
 				self.prepare_insert_context(context_type,context_value)
 			if ( idx < len(self.context_2b_insert)):
-				print("the context:",self.context_2b_insert[idx])
 				return self.context_2b_insert[idx]
 			else:
-				print("idx >= len")
 				return ""
 		elif (context_type == "d"):
-			val = int(context)
-			return (val + ( int(context_value) * idx ))
+			val = str_to_num(context)
+			return (val + ( str_to_num(context_value) * idx ))
 		elif (context_type == "D"):
-			val = int(context)
-			return (val - ( int(context_value) * idx ))
+			val = str_to_num(context)
+			return (val - (str_to_num(context_value) * idx ))
 		elif (context_type == "x"):
-			pass
+			val = str_to_num(context)
+			return hex(val + (str_to_num(context_value) * idx ))
 		elif (context_type == "X"):
-			pass
+			val = str_to_num(context)
+			return hex(val - (str_to_num(context_value) * idx ))
 		else: # constant
 			return context
 
