@@ -1,4 +1,11 @@
 [
+	{ "keys": ["alt+x","y"], "command": "switch_file", "args": {"extensions": ["cpp", "cxx", "cc", "c", "hpp", "hxx", "h", "ipp", "inl", "m", "mm"]} },
+	{ "keys": ["alt+x","s"], "command": "multi_replace"},
+	{ "keys": ["alt+x","q"], "command": "ins_prefix"},
+	{ "keys": ["alt+x","w"], "command": "ins_surfix"},
+	{ "keys": ["alt+x","c"], "command": "new_class"},
+
+
 	{ "keys": ["alt+h"], "command": "move", "args": {"by": "characters", "forward": false} },
 	{ "keys": ["alt+l"], "command": "move", "args": {"by": "characters", "forward": true} },
 	{ "keys": ["alt+k"], "command": "move", "args": {"by": "lines", "forward": false} },
@@ -24,9 +31,6 @@
 	{ "keys": ["alt+shift+o"], "command": "run_macro_file", "args": {"file": "Packages/User/Add Line Before.sublime-macro"}},
 	{ "keys": ["shift+enter"], "command": "run_macro_file", "args": {"file": "Packages/User/ExtCurlyBracket.sublime-macro"}},
 	{ "keys": ["ctrl+enter"], "command": "run_macro_file", "args": {"file": "Packages/User/SemicolonALine.sublime-macro"} },
-
-	{ "keys": ["alt+x","y"], "command": "switch_file", "args": {"extensions": ["cpp", "cxx", "cc", "c", "hpp", "hxx", "h", "ipp", "inl", "m", "mm"]} },
-	{ "keys": ["alt+x","s"], "command": "multi_replace"},
 
 	{ "keys": ["ctrl+alt+k"], "command": "swap_line_up" },
 	{ "keys": ["ctrl+alt+j"], "command": "swap_line_down" },
