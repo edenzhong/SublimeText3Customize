@@ -1,3 +1,4 @@
+import re
 
 def reverse_chars(str):
     reverse = list(str)
@@ -32,3 +33,13 @@ def str_to_num(s):
 		return int(s)
 	except Exception:
 		return 0
+
+def clear_comment(s,syntax_type="cpp"):
+    if ( "cpp" == syntax_type ):
+        s = re.sub("//[^\n$]*","",s)
+    
+    return s
+
+
+
+
