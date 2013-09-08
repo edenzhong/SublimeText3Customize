@@ -4,6 +4,14 @@
 	{ "keys": ["alt+x","q"], "command": "ins_prefix"},
 	{ "keys": ["alt+x","w"], "command": "ins_surfix"},
 	{ "keys": ["alt+x","c"], "command": "new_class"},
+	{ "keys": ["alt+x","d"], "command": "ins_define"},
+	{ "keys": ["alt+x","i"], "command": "ins_include"},
+	{ "keys": ["alt+x","I"], "command": "ins_sys_include"},
+	{ "keys": ["alt+x","'"], "command": "ins_enclose"},
+	{ "keys": ["alt+x","\""], "command": "ins_enclose_by_line"},
+	{ "keys": ["alt+x","`"], "command": "enclose_by_if0"},
+
+	{ "keys": ["alt+enter"], "command": "indent_by_curly_bracket"},
 
 	{ "keys": ["alt+p"], "command": "scroll_lines", "args": {"amount": 1.0} },
 	{ "keys": ["alt+n"], "command": "scroll_lines", "args": {"amount": -1.0} },
