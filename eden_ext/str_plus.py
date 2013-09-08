@@ -40,6 +40,11 @@ def clear_comment(s,syntax_type="cpp"):
     
     return s
 
-
+def get_indent_of_string(s):
+    mo = re.search("^[ \t]+(?=[^ \t$])", s)
+    if (mo):
+        return mo.group(0)
+    else:
+        return ""
 
 

@@ -5,6 +5,13 @@
 	{ "keys": ["alt+x","w"], "command": "ins_surfix"},
 	{ "keys": ["alt+x","c"], "command": "new_class"},
 
+	{ "keys": ["alt+p"], "command": "scroll_lines", "args": {"amount": 1.0} },
+	{ "keys": ["alt+n"], "command": "scroll_lines", "args": {"amount": -1.0} },
+
+
+
+	{ "keys": ["alt+shift+n"], "command": "move", "args": {"by": "pages", "forward": true} },
+	{ "keys": ["alt+shift+p"], "command": "move", "args": {"by": "pages", "forward": false} },
 
 	{ "keys": ["alt+h"], "command": "move", "args": {"by": "characters", "forward": false} },
 	{ "keys": ["alt+l"], "command": "move", "args": {"by": "characters", "forward": true} },
