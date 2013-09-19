@@ -47,4 +47,11 @@ def get_indent_of_string(s):
     else:
         return ""
 
-
+def get_file_name_from_full(full):
+    match = re.search("[^\\\/]+$",full)
+    if ( match ):
+        name = match.group(0)
+        match = re.search("^[^\.]+",name)
+        if (match):
+            return match.group(0)
+    return full
