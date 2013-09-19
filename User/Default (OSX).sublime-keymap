@@ -10,8 +10,13 @@
 	{ "keys": ["alt+x","'"], "command": "ins_enclose"},
 	{ "keys": ["alt+x","\""], "command": "ins_enclose_by_line"},
 	{ "keys": ["alt+x","`"], "command": "enclose_by_if0"},
+	{ "keys": ["alt+x","f"], "command": "ins_file_name"},
+	{ "keys": ["alt+x","F"], "command": "copy_file_name_to_clipboard"},
 
 	{ "keys": ["alt+enter"], "command": "indent_by_curly_bracket"},
+
+	{ "keys": ["alt+,"], "command": "jump_back"},
+	{ "keys": ["alt+."], "command": "jump_forward"},
 
 	{ "keys": ["alt+p"], "command": "scroll_lines", "args": {"amount": 1.0} },
 	{ "keys": ["alt+n"], "command": "scroll_lines", "args": {"amount": -1.0} },
