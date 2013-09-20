@@ -55,3 +55,14 @@ def get_file_name_from_full(full):
         if (match):
             return match.group(0)
     return full
+
+def get_word_by_idx(s,idx):
+    match = re.findall("\w+",s)
+    if ( match ):
+        if ( idx > 0 ):
+            if ( len(match)>idx):
+                return match[idx]
+        elif (len(match)>=(-idx)):
+            return match[idx]
+    return None
+    

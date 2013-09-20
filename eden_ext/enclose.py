@@ -17,7 +17,6 @@ class EncloseByLineCommand(sublime_plugin.TextCommand):
 			output = ""
 			if ( len(lns) > 0):
 				for ln in lns:
-					print(ln)
 					output = output + leading + ln + ending + "\n"
 			else:
 				output = leading + ending
