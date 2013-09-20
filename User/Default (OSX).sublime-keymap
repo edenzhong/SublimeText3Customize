@@ -13,6 +13,8 @@
 	{ "keys": ["alt+x","f"], "command": "ins_file_name"},
 	{ "keys": ["alt+x","F"], "command": "copy_file_name_to_clipboard"},
 	{ "keys": ["alt+x","a"], "command": "gen_acc_mem_var"},
+	{ "keys": ["alt+x","A"], "command": "gen_method_body"},
+	
 	
 	{ "keys": ["alt+enter"], "command": "indent_by_curly_bracket"},
 

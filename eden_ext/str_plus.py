@@ -36,7 +36,13 @@ def str_to_num(s):
 
 def clear_comment(s,syntax_type="cpp"):
     if ( "cpp" == syntax_type ):
-        s = re.sub("//[^\n$]*","",s)
+        lns = s.splitlines()
+        s = ""
+        for ln in lns:
+            ln = re.sub("//[^\n$]*","",ln)
+            if ( len(s)>0):
+                s += "\n"
+            s += ln
     
     return s
 
