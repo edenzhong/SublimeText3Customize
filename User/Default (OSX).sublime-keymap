@@ -1,4 +1,6 @@
 [
+	{ "keys": ["alt+x","t"], "command": "test_plugin"},
+
 	{ "keys": ["alt+x","y"], "command": "switch_file", "args": {"extensions": ["cpp", "cxx", "cc", "c", "hpp", "hxx", "h", "ipp", "inl", "m", "mm"]} },
 	{ "keys": ["alt+x","s"], "command": "multi_replace"},
 	{ "keys": ["alt+x","q"], "command": "ins_prefix"},

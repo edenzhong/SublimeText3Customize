@@ -34,17 +34,44 @@ def str_to_num(s):
 	except Exception:
 		return 0
 
-def clear_comment(s,syntax_type="cpp"):
-    if ( "cpp" == syntax_type ):
-        lns = s.splitlines()
-        s = ""
-        for ln in lns:
-            ln = re.sub("//[^\n$]*","",ln)
-            if ( len(s)>0):
-                s += "\n"
-            s += ln
-    
-    return s
+def get_sub_str(s,idx,len):
+    try:
+        return s[idx,idx+len]
+    except Exception:
+        return EOF
+
+def clear_cpp_comment(s):
+    l = len(s)
+    payload = 0
+    c_cmt = 1
+    cpp_cmt = 2
+    state = payload
+    return_string = ""
+    i = 0
+
+    try:
+        while i<l:
+            if ( state == c_cmt):
+                if(s[i:i+2]=="*/"):
+                    state = payload
+                    i = i + 1
+            elif ( state == cpp_cmt):
+                if ( s[i] == "\n"):
+                    state = payload
+            else: # ( state == payload ):
+                if(s[i:i+2] == "/*"):
+                    state = c_cmt
+                    i = i + 1
+                elif(s[i:i+2] == "//"):
+                    state = cpp_cmt
+                    i = i + 1
+                else:
+                    return_string += s[i]
+            
+            i = i + 1
+    except Exception:
+        sublime.message_dialog("exception")
+    return return_string
 
 def get_indent_of_string(s):
     mo = re.search("^[ \t]+(?=[^ \t$])", s)

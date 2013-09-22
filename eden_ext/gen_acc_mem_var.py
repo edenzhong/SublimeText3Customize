@@ -1,5 +1,5 @@
 import sublime, sublime_plugin, re
-from .str_plus import clear_comment
+from .str_plus import clear_cpp_comment
 
 class GenAccMemVarCommand(sublime_plugin.TextCommand):
 	def run(self, edit):
@@ -10,11 +10,10 @@ class GenAccMemVarCommand(sublime_plugin.TextCommand):
 			lns = self.view.substr(region).splitlines()
 			if ( len(lns) > 0):
 				for ln in lns:
-					ln = clear_comment(ln)
+					ln = clear_cpp_comment(ln)
 					match = re.findall("(\w+)",ln)
 					if (match and len(match)>1):
-						# get last word as var name. if there are some comment after
-						# the definition, this util will not work correctly.
+						# get last word as var name. 
 						varname = match[-1]
 						if ( re.match("[Mm]_",varname)):
 							pure_var_name = varname[2:]
