@@ -24,14 +24,32 @@ class EncloseByLineCommand(sublime_plugin.TextCommand):
 		
 class InsDefineCommand(sublime_plugin.TextCommand):
 	def run(self, edit):
+		sel = self.view.sel()
+		if len(sel) == 1:
+			if sel[0].a == sel[0].b:  #nothing selected
+				self.view.insert(edit,sel[0].a,"#define ")
+				return
 		self.view.run_command("enclose_by_line",{"leading":"#define ","ending":""})
 
 class InsIncludeCommand(sublime_plugin.TextCommand):
 	def run(self, edit):
+		sel = self.view.sel()
+		if len(sel) == 1:
+			if sel[0].a == sel[0].b:  #nothing selected
+				self.view.insert(edit,sel[0].a,"#include \"\"")
+				self.view.run_command("move",{"by":"characters","forward":False})
+				return
 		self.view.run_command("enclose_by_line",{"leading":"#include \"","ending":"\""})
+			
 
 class InsSysIncludeCommand(sublime_plugin.TextCommand):
 	def run(self, edit):
+		sel = self.view.sel()
+		if len(sel) == 1:
+			if sel[0].a == sel[0].b:  #nothing selected
+				self.view.insert(edit,sel[0].a,"#include <>")
+				self.view.run_command("move",{"by":"characters","forward":False})
+				return
 		self.view.run_command("enclose_by_line",{"leading":"#include <","ending":">"})
 
 def get_enclose_leading_ending(user_input):
